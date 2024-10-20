@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Анкета автомобіліста</title>
+</head>
+<body>
+<h2>Анкета автомобіліста</h2>
+<!-- створив форму, за допомогою input, де можна ввести дані, а також select, де можна обрати варіанти -->
+<form id="driverForm">
+    <label for="name">Ім'я та Прізвище:</label>
+    <input type="text" id="name" name="name" placeholder="Введіть ваше ім'я та прізвище">
+    <span class="error" id="nameError"></span>
+
+    <label for="carModel">Марка автомобіля:</label>
+    <input type="text" id="carBrand" name="carBrand" placeholder="Введіть марку автомобіля">
+    <span class="error" id="carBrandError"></span>
+
+    <label for="carModel">Модель автомобіля:</label>
+    <input type="text" id="carModel" name="carModel" placeholder="Введіть модель автомобіля">
+    <span class="error" id="carModelError"></span>
+
+    <label for="year">Рік випуску:</label>
+    <input type="number" id="year" name="year" placeholder="Введіть рік випуску автомобіля">
+    <span class="error" id="yearError"></span>
+
+    <label for="fuelType">Тип палива:</label>
+    <select id="fuelType" name="fuelType">
+        <option value="">Оберіть тип палива</option>
+        <option value="Бензин">Бензин</option>
+        <option value="Дизель">Дизель</option>
+        <option value="Електрика">Електрика</option>
+        <option value="Гібрид">Гібрид</option>
+    </select>
+    <span class="error" id="fuelTypeError"></span>
+
+    <label for="engineCapacity">Об'єм двигуна (л):</label>
+    <input type="number" id="engineCapacity" name="engineCapacity" placeholder="Введіть об'єм двигуна в літрах" step="0.1">
+    <span class="error" id="engineCapacityError"></span>
+
+    <label for="horsePower">Потужність (к.с.):</label>
+    <input type="number" id="horsePower" name="horsePower" placeholder="Введіть потужність двигуна в кінських силах">
+    <span class="error" id="horsePowerError"></span>
+
+    <label for="transmission">Тип трансмісії:</label>
+    <select id="transmission" name="transmission">
+        <option value="">Оберіть тип трансмісії</option>
+        <option value="Механічна">Механічна</option>
+        <option value="Автоматична">Автоматична</option>
+        <option value="Роботизована">Роботизована</option>
+        <option value="Варіатор">Варіатор</option>
+    </select>
+    <span class="error" id="transmissionError"></span>
+
+    <label for="driveType">Привод:</label>
+    <select id="driveType" name="driveType">
+        <option value="">Оберіть тип приводу</option>
+        <option value="Передній">Передній</option>
+        <option value="Задній">Задній</option>
+        <option value="Повний">Повний</option>
+    </select>
+    <span class="error" id="driveTypeError"></span>
+
+    <label for="mileage">Пробіг (км):</label>
+    <input type="number" id="mileage" name="mileage" placeholder="Введіть пробіг автомобіля">
+    <span class="error" id="mileageError"></span>
+
+    <button type="submit">Відправити</button>
+</form>
+
+<script>
+    document.getElementById('driverForm').addEventListener('submit', function(event) {
+        let isValid = true;
+        // очистив помилки перед перевіркою
+        document.querySelectorAll('.error').forEach(function(span) {
+            span.textContent = '';
+        });
+        // перевірка всіх полів
+        if (document.getElementById('name').value.trim() === '') {
+            document.getElementById('nameError').textContent = 'Будь ласка, введіть ім\'я та прізвище.';
+            isValid = false;
+        }
+
+        if (document.getElementById('carBrand').value.trim() === '') {
+            document.getElementById('carBrandError').textContent = 'Будь ласка, введіть марку автомобіля.';
+            isValid = false;
+        }
+
+        if (document.getElementById('carModel').value.trim() === '') {
+            document.getElementById('carModelError').textContent = 'Будь ласка, введіть модель автомобіля.';
+            isValid = false;
+        }
+
+        if (document.getElementById('year').value.trim() === '') {
+            document.getElementById('yearError').textContent = 'Будь ласка, введіть рік випуску.';
+            isValid = false;
+        }
+
+        if (document.getElementById('fuelType').value === '') {
+            document.getElementById('fuelTypeError').textContent = 'Будь ласка, оберіть тип палива.';
+            isValid = false;
+        }
+
+        if (document.getElementById('engineCapacity').value.trim() === '') {
+            document.getElementById('engineCapacityError').textContent = 'Будь ласка, введіть об\'єм двигуна.';
+            isValid = false;
+        }
+
+        if (document.getElementById('horsePower').value.trim() === '') {
+            document.getElementById('horsePowerError').textContent = 'Будь ласка, введіть потужність двигуна.';
+            isValid = false;
+        }
+
+        if (document.getElementById('transmission').value === '') {
+            document.getElementById('transmissionError').textContent = 'Будь ласка, оберіть тип трансмісії.';
+            isValid = false;
+        }
+
+        if (document.getElementById('driveType').value === '') {
+            document.getElementById('driveTypeError').textContent = 'Будь ласка, оберіть тип приводу.';
+            isValid = false;
+        }
+
+        if (document.getElementById('mileage').value.trim() === '') {
+            document.getElementById('mileageError').textContent = 'Будь ласка, введіть пробіг автомобіля.';
+            isValid = false;
+        }
+        // якщо помилка, то скасовуємо форму
+        if (!isValid) {
+            event.preventDefault();
+        }
+    });
+</script>
+
+</body>
+</html>
